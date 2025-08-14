@@ -1,10 +1,12 @@
 import getAllPost from "@/lib/getAllPost";
+import Link from "next/link";
+import styles from "../page.module.css";
 
 export default async function Posts() {
   const posts = await getAllPost();
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div className={styles.container}>
       <h1>These are the posts</h1>
       <ul
         style={{
@@ -15,7 +17,9 @@ export default async function Posts() {
         }}
       >
         {posts.map((post) => (
-          <li key={post.id}>{post.title}</li>
+          <li key={post.id}>
+            <Link href={`/posts/${post.id}`}>{post.title}</Link>
+          </li>
         ))}
       </ul>
     </div>
